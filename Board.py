@@ -1,7 +1,6 @@
 import numpy as np
-def play_game():
-    pass
 
+colors = ["\033[93m", "\033[92m", "\033[94m", "\033[96m", "\033[95m"]
 
 def add_players():
     players = []
@@ -11,8 +10,9 @@ def add_players():
             nr_players = int(answer)
             if 1 <= nr_players <= 5:
                 for player in range(nr_players):
-                    name = input(f"Enter name for Player {player + 1}: ")
-                    players.append({"name": name})
+                    name = input(f"Enter name for Player {player + 1}(max 10 characters): ")
+                    name = name[:10]
+                    players.append({"name": name, "score": 0})
                 return players, nr_players,
             else:
                 print(f"{nr_players}is invalid number. Please enter a number between 1 and 5")
@@ -20,32 +20,16 @@ def add_players():
             print(f"{answer} is not a number. Please enter a number between 1 and 5")
 
 
-players, nr_players = add_players() # för att få ut dessa variablar ur funktionen
-
-
 def draw_track(players):
     track_length = 30
     player_tracks = {}
     for player in players:
         track = np.full(track_length, '-')
-        track[3] = 'X'
+        track[0] = 'X'
         player_tracks[player["name"]] = track
     return player_tracks
 
 
 def print_tracks(player_tracks):
     for player, track in player_tracks.items():
-        # Replace the player's current position with 'X'
-        print(f"{player}: {''.join(track)}")
-
-
-player_tracks = draw_track(players)
-print_tracks(player_tracks)
-
-
-def start_game():
-    pass
-
-
-
-
+        print(f"        0{player:<10}: {''.join(track)}")
