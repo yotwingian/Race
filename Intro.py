@@ -53,8 +53,8 @@ def game_intro():
                                       "\n                Yba                 `888888P'   adY           | ||        "
                                       "\n                 ` Yba,             d8888P  ,adP '            |_||        "
                                       "\n                    ` Y8baa,      ,d888P,ad8P '              / 0 |        "
-                                      "\n                         ``  YYba8888P  ''                  / ooo |       "
-                                      "\n " + reset + "                                                            ")
+                                      "\n                         ``  YYba8888P  ''                  / ooo |  " + reset + "     ")
+
             Menu.main_menu()
             listener.stop()
 

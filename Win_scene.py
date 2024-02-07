@@ -1,3 +1,3 @@
 
 def win():
-    print("Hello World!")
+    print("Some Future Victory illustration")

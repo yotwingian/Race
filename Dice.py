@@ -27,7 +27,7 @@ def draw_dice(dices):
         # Write the line to the standard output
         sys.stdout.write(line + '\n')
 
-roll_dices()
+
 
 
 # def roll(r):

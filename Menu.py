@@ -12,12 +12,12 @@ bold = "\033[1m"
 def main_menu():
     run = True
     while run:
-        answer = input(green + bold + f"\n                         Escape from Earth \n" + reset + ""
+        answer = input(green + bold + f"                         Escape from Earth \n" + reset + ""
                        + green + "\n                          1. Play The Game"
                                  "\n                          2. See Highscore"
                                  "\n                          3. Options"
                                  "\n                          q. quitter"
-                                 "\n                        -> "+reset+" ").strip()
+                                 "\n                          -> "+reset+" ").strip()
 
         match answer.lower():
             case "1":
