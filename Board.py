@@ -16,6 +16,7 @@ class Player:
         self.colored_name = f"{color}{name}"
         self.score = 0
         self.turns_to_win = 0
+        self.dice_values = []
 
 
 def add_players():
@@ -39,8 +40,8 @@ def add_players():
 
 def draw_track(players):
     print(reset)
-    print(bold + green + "\n" * 50 + "                             ---Welcome to Race!---")
-    print("\n        START          :> ============================== <: FINNISHED" + reset)
+    print(bold + green + "\n" * 50 + "                               ---Welcome to Race!---")
+    print("        START          :> ============================== <: FINNISHED\n" + reset)
     track_length = 30
     player_tracks = {}
     for player in players:
@@ -59,6 +60,9 @@ def player_turn(player, player_tracks):
     print(f"\nIt's {player.colored_name}'s\033[0m turn! Press ENTER to roll")
     input()
     dice_roll = Dice.roll_dices()
+    player.dice_values.append(dice_roll)  # store the dice value
+    player.score += sum(dice_roll)  # update the score
+    player.turns_to_win += 1  # increment the turn count
     print(f"{player.colored_name}\033[0m rolled a {dice_roll}!")
     update_position(player, dice_roll, player_tracks)
 
@@ -86,14 +90,6 @@ def play_game():
             player_turn(player, player_tracks)
             print_tracks(player_tracks)
             if 'X' in player_tracks[player.colored_name][-1]:
-                Win_scene.win()
+                Win_scene.win(players)
                 game_over = True
                 break
-
-            # if player_tracks[player] >=30:
-            #     game_over = True
-
-            # Check if the game is over
-            # if game_over_condition:  # Replace with your game over condition
-            #     game_over = True
-            #     break
