@@ -18,6 +18,7 @@ def main_menu():
         match answer.lower():
             case "1":
                 Board.play_game()
+                run = False
 
             case "2":
                 print("Not ready")
@@ -27,6 +28,8 @@ def main_menu():
 
             case "q":
                 print("Game shutting down!")
-                return
+                return False
+
+
             case _:
                 print(f"'{answer}' is not a valid option pls chose between 1-5 or Q!")

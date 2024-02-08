@@ -33,15 +33,15 @@ def add_players():
                     players.append(Player(name, color))
                 return players
             else:
-                print("   {nr_players}is invalid number. Please enter a number between 1 and 5")
+                print(f"   {nr_players}is invalid number. Please enter a number between 1 and 5")
         except ValueError:
             print(f"   {answer} is not a number. Please enter a number between 1 and 5")
 
 
 def draw_track(players):
     print(reset)
-    print(bold + green + "\n" * 50 + "                               ---Welcome to Race!---")
-    print("        START          :> ============================== <: FINNISHED\n" + reset)
+    print(bold + green + "\n" * 50 + "                           ---Welcome to the Race!---")
+    print("        START          :> ============================== <: FINISHED\n" + reset)
     track_length = 30
     player_tracks = {}
     for player in players:
@@ -79,7 +79,6 @@ def update_position(player, dice_roll, player_tracks):
     else:
         player_tracks[player.colored_name][new_position] = colored_X
 
-
 def play_game():
     players = add_players()
     player_tracks = draw_track(players)
@@ -90,6 +89,7 @@ def play_game():
             player_turn(player, player_tracks)
             print_tracks(player_tracks)
             if 'X' in player_tracks[player.colored_name][-1]:
-                Win_scene.win(players)
+                winner = player
+                Win_scene.win(players, winner)
                 game_over = True
                 break

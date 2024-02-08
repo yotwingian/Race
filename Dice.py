@@ -24,30 +24,9 @@ def draw_dice(dices):
     }
     for i in range(5):
         line = yellow + '    '.join(line[i] for line in map(dice_faces.get, dices)) + reset
-        # Write the line to the standard output
         sys.stdout.write(line + '\n')
 
 
 
 
-# def roll(r):
-#     print(bold, green + "                    Press space for roll!")
-#
-#     def on_press(key):
-#         if key == keyboard.Key.space:
-#             output = roll_dices(r)
-#             print(green + '  keep 1       keep 2       keep 3       keep 4       keep 5')
-#             print(
-#                 reset + "\n     Chose witch dices to keep" + green + " use keys 1-5 to keep " + reset + "your dicees"
-#                                                                                                         "\n                Press space for another roll"
-#                                                                                                         "\n                Press Enter to submit result"
-#                                                                                                         "\n                                                    q = quitter" + reset)
-#             print(roll)
-#             roll_choice(output)
-#             return False
-#         elif key == keyboard.KeyCode(char='q'):
-#             print('Quitting...')
-#             return False
-#
-#     with keyboard.Listener(suppress=True, on_press=on_press) as listener:
-#         listener.join()
+
