@@ -1,13 +1,6 @@
 import sys
 from numpy.random import randint
-yellow = "\033[93m"
-green = "\033[92m"
-blue = "\033[94m"
-cyan = "\033[96m"
-purple = "\033[95m"
-reset = "\033[0m"
-
-bold = "\033[1m"
+import Color as C
 def roll_dices():
     dices = [randint(1, 7) for _ in range(1)]
     draw_dice(dices)
@@ -23,7 +16,7 @@ def draw_dice(dices):
         6: [" _______ ", "| o   o |", "| o   o |", "| o   o |", "'-------'"]
     }
     for i in range(5):
-        line = yellow + '    '.join(line[i] for line in map(dice_faces.get, dices)) + reset
+        line = C.yellow + '    '.join(line[i] for line in map(dice_faces.get, dices)) + C.reset
         sys.stdout.write(line + '\n')
 
 

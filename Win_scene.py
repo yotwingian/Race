@@ -1,5 +1,5 @@
 import Statistics
-reset = "\033[0m"
+import Color as C
 def win(players, winner):
     print("\n" *50 +f"                {winner.name} YOU HAVE ESCAPED!!!")
     print("     /\\")
@@ -23,7 +23,7 @@ def win(players, winner):
     print("|||    ||| ||")
     print("|||   ...")
 
-    input("\nPress ENTER to see Game Statistics\n"+reset)
+    input("\nPress ENTER to see Game Statistics\n"+C.reset)
     Statistics.game_statistics(players)
 
 

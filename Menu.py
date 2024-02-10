@@ -1,19 +1,17 @@
 import Board
+import Color as C
 
-green = "\033[92m"
-reset = "\033[0m"
-bold = "\033[1m"
 
 
 def main_menu():
     run = True
     while run:
-        answer = input(green + bold + f"\n                         Escape from Earth \n" + reset + ""
-                       + green + "                          1. Play The Game"
+        answer = input(C.green + C.bold + f"\n                         Escape from Earth \n" + C.reset + ""
+                       + C.green + "                          1. Play The Game"
                                  "\n                          2. See Highscore"
                                  "\n                          3. How to play"
                                  "\n                          q. quitter"
-                                 "\n                          -> " + reset + " ").strip()
+                                 "\n                          -> " + C.reset + " ").strip()
 
         match answer.lower():
             case "1":

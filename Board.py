@@ -1,14 +1,7 @@
 import numpy as np
 import Dice
 import Win_scene
-
-colors = ["\033[96m", "\033[93m", "\033[94m", "\033[95m", "\033[92m"]
-reset = "\033[0m"
-bold = "\033[1m"
-magenta = "\033[35m"
-green = "\033[32m"
-
-
+import Color as C
 class Player:
     def __init__(self, name, color):
         self.name = name
@@ -29,7 +22,7 @@ def add_players():
                 for player in range(nr_players):
                     name = input(f" | Enter name for Player {player + 1}: -> ")
                     name = name[:10]
-                    color = colors[player % len(colors)]
+                    color = C.colors[player % len(C.colors)]
                     players.append(Player(name, color))
                 return players
             else:
@@ -39,9 +32,9 @@ def add_players():
 
 
 def draw_track(players):
-    print(reset)
-    print(bold + green + "\n" * 50 + "                           ---Welcome to the Race!---")
-    print("        START          :> ============================== <: FINISHED\n" + reset)
+    print(C.reset)
+    print(C.bold + C.green + "\n" * 50 + "                           ---Welcome to the Race!---")
+    print("        START          :> ============================== <: FINISHED\n" + C.reset)
     track_length = 30
     player_tracks = {}
     for player in players:
@@ -93,3 +86,5 @@ def play_game():
                 Win_scene.win(players, winner)
                 game_over = True
                 break
+
+# play_game()
