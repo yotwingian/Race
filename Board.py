@@ -10,7 +10,8 @@ class Player:
         self.score = 0
         self.turns_to_win = 0
         self.dice_values = []
-
+        self.accumulated_scores = []
+        self.dice_counts = {i: 0 for i in range(1, 7)}  #för att underlätta statestiken sparar vi antalet av varie tärningsutfall ist'lle för att räkna ut det från dice_value senare
 
 def add_players():
     players = []
@@ -56,6 +57,8 @@ def player_turn(player, player_tracks):
     player.dice_values.append(dice_roll)  # store the dice value
     player.score += sum(dice_roll)  # update the score
     player.turns_to_win += 1  # increment the turn count
+    player.accumulated_scores.append(player.score)
+    player.dice_counts[dice_roll[0]] += 1  #uppdatera
     print(f"{player.colored_name}\033[0m rolled a {dice_roll}!")
     update_position(player, dice_roll, player_tracks)
 

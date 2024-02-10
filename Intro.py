@@ -4,18 +4,18 @@ import time
 import Menu
 import Color as C
 
-def print_slow(text, delay=0.1):
-    # This function prints the text slowly with a given delay
-    for char in text:
-        sys.stdout.write(char)  # Write one character at a time
-        sys.stdout.flush()  # Make sure it appears immediately
-        time.sleep(delay)  # Wait for some time before printing the next character
-
-intro = C.bold + "\n    Earth 2078.......\n \n    Pollution has made Earth almost uninhabitable, and people are literally choking to death.\n    But there is a way out: the new Tesla colony at Alpha Centauri.\n    The decadent Earth society is arranging monthly competitions,\n    and the prize is a ticket on the last ship from Earth heading for Alpha Proxima.\n    You have been chosen for the escape race.\n    Are you ready?.........\n                                          Press space"
-
-# Print the intro slowly with a delay of 0.05 seconds
+# def print_slow(text, delay=0.1):
+#     # This function prints the text slowly with a given delay
+#     for char in text:
+#         sys.stdout.write(char)  # Write one character at a time
+#         sys.stdout.flush()  # Make sure it appears immediately
+#         time.sleep(delay)  # Wait for some time before printing the next character
+#
+# intro = C.bold + "\n    Earth 2078.......\n \n    Pollution has made Earth almost uninhabitable, and people are literally choking to death.\n    But there is a way out: the new Tesla colony at Alpha Centauri.\n    The decadent Earth society is arranging monthly competitions,\n    and the prize is a ticket on the last ship from Earth heading for Alpha Proxima.\n    You have been chosen for the escape race.\n    Are you ready?.........\n                                          Press space"
+#
+# # Print the intro slowly with a delay of 0.05 seconds
 def game_intro():
-    print_slow(intro, 0.05)
+    # print_slow(intro, 0.05)
 
     listener = keyboard.Listener(suppress=True, on_press=None)
 
