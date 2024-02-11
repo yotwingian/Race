@@ -2,6 +2,7 @@ import numpy as np
 import Dice
 import Win_scene
 import Color as C
+from datetime import datetime
 class Player:
     def __init__(self, name, color):
         self.name = name
@@ -12,7 +13,7 @@ class Player:
         self.dice_values = []
         self.accumulated_scores = []
         self.dice_counts = {i: 0 for i in range(1, 7)}  #för att underlätta statestiken sparar vi antalet av varie tärningsutfall ist'lle för att räkna ut det från dice_value senare
-
+        self.date = datetime.now()
 def add_players():
     players = []
     while True:

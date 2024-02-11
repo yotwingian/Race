@@ -18,7 +18,8 @@ def main_menu():
                 run = False
 
             case "2":
-                print(" Not ready")
+                show_high_scores()
+                run = False
 
             case "3":
                 how_to_play()
@@ -36,5 +37,20 @@ def how_to_play():
     input(C.bold + "\n     In this race game your goal is to reach the finish before anyone else."
                    "\n     When your turn comes you roll the dice and your piece marked by an X moves."
                    "\n     After each game you can enjoy some cool game statistics\n"
-          + C.green + "\n                     Press Enter to continue..."+C.reset)
+          + C.green + "\n                     Press Enter to continue..." + C.reset)
+    main_menu()
+
+
+def show_high_scores(filename='high_scores.txt'):
+    try:
+        with open(filename, 'r') as f:
+            print(C.cyan + "\nHigh Scores:")
+            print("{:<20} {:<15} {:<10}".format('Player', 'Turns to Win', 'Date'))
+            for line in f:
+                name, turns, date = line.strip().split(',')
+                print("{:<20} {:<15} {:<10}".format(name, turns, date))  #
+    except FileNotFoundError:
+        print("No high scores yet!")
+
+    input(C.green + "\n       Press Enter to return" + C.reset)
     main_menu()

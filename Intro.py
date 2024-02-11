@@ -1,4 +1,4 @@
-from pynput import keyboard
+from pynput import keyboard  #för att använda keylistener
 import sys
 import time
 import Menu
@@ -45,9 +45,11 @@ def game_intro():
                                       "\n                    ` Y8baa,      ,d888P,ad8P '              / 0 |        "
                                       "\n                         ``  YYba8888P  ''                  / ooo |  " + C.reset + "     ")
 
-            Menu.main_menu()
             listener.stop()
 
     listener.on_press = on_press
     listener.start()
     listener.join()
+    Menu.main_menu()
+    # quit_the_listener()
+# def quit_the_listener():

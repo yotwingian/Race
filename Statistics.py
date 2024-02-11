@@ -1,17 +1,20 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import Menu
-
+import warnings
+import Color as C
+warnings.filterwarnings("ignore", category=UserWarning)
 
 def game_statistics(players):
     game_data = {
         'Player': [player.name for player in players],
         'Score': [player.score for player in players],
         'Turns to Win': [player.turns_to_win for player in players],
-        'Dice Values': [player.dice_values for player in players]
-    }
+        'Dice Values': [player.dice_values for player in players],
+        'Date': [player.date for player in players]
+            }
     df = pd.DataFrame(game_data)
-    print(df)
+    # print(df)
 
     fig, axs = plt.subplots(3, 1, figsize=(15, 15))  # Create a figure with 2 subplots
 
@@ -36,36 +39,43 @@ def game_statistics(players):
     axs[2].set_title('Total Dice Roll Counts')
 
     plt.savefig('scores.png')
+    save_game_statistics(df, filename='game_statistics.csv')
     plt.show()
-
-    plt.savefig('scores.png')
-    plt.show()
-
-    # plt.subplots_adjust(hspace=5)
-    # plt.tight_layout(pad=2)  # Adjust the padding between and around the subplots
-
-    # plt.bar(df['Player'], df['Score'])
-    # plt.xlabel('Player')
-    # plt.ylabel('Score')
-    # plt.title('Scores by Player')
-    # # plt.show()
-    #
-    # # plt.style.use('dark_background')
-    # # New code to plot score progress for each player
-    # for player in players:
-    #     flat_dice_values = [item for sublist in player.dice_values for item in sublist]
-    #     plt.plot(range(len(flat_dice_values)), [sum(flat_dice_values[:i + 1]) for i in range(len(flat_dice_values))],
-    #              label=player.name)
-    #
-    # plt.xlabel('Turn')
-    # plt.ylabel('Score')
-    # plt.title('Score Progress by Turn')
-    # plt.legend()
-    # plt.show()
-
-    input("\nPress Enter to exit")
+    input("\nPress Enter to Continue"+C.reset)
+    plt.close('all')
     Menu.main_menu()
-# If you want to see the plots in the correct size within PyCharm, you could try using an external viewer for matplotlib plots. You can change this setting in PyCharm as follows:
-#
-# Go to File > Settings > Tools > Python Scientific.
-# Uncheck the box that says Show plots in tool window.
+
+def save_game_statistics(df, filename='game_statistics.csv'):
+    # Write DataFrame to CSV file, appending if the file already exists
+    df.to_csv(filename, mode='a', index=False)
+
+def update_high_scores(winner, filename='high_scores.txt'):
+    high_scores = []
+
+    # Load existing high scores from file
+    try:
+        with open(filename, 'r') as f:
+            for line in f:
+                name, turns, date = line.strip().split(',')
+                high_scores.append((name, int(turns), date))
+    except FileNotFoundError:
+        pass  # It's okay if the file doesn't exist yet
+
+    # Add new high score if it's lower than the existing high scores
+    if not high_scores or winner.turns_to_win < max(turns for name, turns, date in high_scores):
+        high_scores.append((winner.name, winner.turns_to_win, winner.date.strftime("%Y-%m-%d")))
+
+    # Sort the high scores by the number of turns (in ascending order)
+    high_scores.sort(key=lambda x: x[1])
+
+    # Trim the list to the top 15 scores
+    high_scores = high_scores[:15]
+
+    # Write updated high scores to file
+    with open(filename, 'w') as f:
+        for name, turns, date in high_scores:
+            f.write(f'{name},{turns},{date}\n')
+
+
+
+
