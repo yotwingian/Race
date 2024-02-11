@@ -1,4 +1,4 @@
-This is a game in making , you race againt other players as of now in hotseat, and you can se some game statisticts after.
+
 
 
 Escape from Earth.
@@ -9,6 +9,7 @@ After each race a Some statistics is produced. Final score, Score each turn, and
 A statistics png-file is created and a csv-file with a Dataframe for each game is stored.
 
 Happy playing!
+
 
 ( If you want to see the plots in the correct size within PyCharm, you could try using an external viewer for matplotlib plots.
 You can change this setting in PyCharm as follows:

@@ -78,4 +78,3 @@ def update_high_scores(winner, filename='high_scores.txt'):
 
 
 
-
