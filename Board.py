@@ -3,8 +3,8 @@ import Dice
 import Win_scene
 import Color as C
 from datetime import datetime
-class Player:
-    def __init__(self, name, color):
+class Player:                                               #player började som en lista med en egenskap name men det bara växte och växte fick motviligt byta till class, men det visade sig vara väldigt användbart
+    def __init__(self, name, color):                        #attributen för player class listas här de flesta behövs senare för statestiken
         self.name = name
         self.color = color
         self.colored_name = f"{color}{name}"
@@ -12,28 +12,28 @@ class Player:
         self.turns_to_win = 0
         self.dice_values = []
         self.accumulated_scores = []
-        self.dice_counts = {i: 0 for i in range(1, 7)}  #för att underlätta statestiken sparar vi antalet av varie tärningsutfall ist'lle för att räkna ut det från dice_value senare
+        self.dice_counts = {i: 0 for i in range(1, 7)}      #för att underlätta statestiken sparas antalet av varie tärningsutfall ist'lle för att räkna ut det från dice_value senare
         self.date = datetime.now()
-def add_players():
+def add_players():                                          #Här tas spelarna in och den viktiga returnen "players" som sedan används överallt
     players = []
     while True:
-        answer = input("\n" * 3 + "\n | How many players would like to play? (max 5pl) -> ")
-        try:
-            nr_players = int(answer)
-            if 1 <= nr_players <= 5:
-                for player in range(nr_players):
-                    name = input(f" | Enter name for Player {player + 1}: -> ")
-                    name = name[:10]
-                    color = C.colors[player % len(C.colors)]
-                    players.append(Player(name, color))
-                return players
+        answer = input("\n" * 3 + "\n | How many players would like to play? (max 5pl) -> ")            # hur många ska spela
+        try:                                                                                            #felhantering om man anger annat än nummer
+            nr_players = int(answer)                                                                    #svaret blir en ny variabel och en integer
+            if 1 <= nr_players <= 5:                                                                    # vilkor ges på antalsintervallet
+                for player in range(nr_players):                                                        # en liten loop som itererar för varje spelare av antalet man angav
+                    name = input(f" | Enter name for Player {player + 1}: -> ")                         #varje spelare får namn
+                    name = name[:10]                                                                    # max 10 bostäver
+                    color = C.colors[player % len(C.colors)]                                            # färg tilldelas från variabeln colors som ligger i filen Color.py (% operatorn går genom färgerna i variabeln gpt_ns hjälp)
+                    players.append(Player(name, color))                                                 #Lista av players skapas med player objekt och dess attribut
+                return players                                                                          # listan till export till de behövande
             else:
                 print(f"   {nr_players}is invalid number. Please enter a number between 1 and 5")
         except ValueError:
             print(f"   {answer} is not a number. Please enter a number between 1 and 5")
 
 
-def draw_track(players):
+def draw_track(players):                                                                              #Varje spelare får sin bana att raca på och i denna func skapas de
     print(C.reset)
     print(C.bold + C.green + "\n" * 50 + "                           ---Welcome to the Race!---")
     print("        START          :> ============================== <: FINISHED\n" + C.reset)
