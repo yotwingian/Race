@@ -33,50 +33,50 @@ def add_players():                                          #Här tas spelarna i
             print(f"   {answer} is not a number. Please enter a number between 1 and 5")
 
 
-def draw_track(players):                                                                              #Varje spelare får sin bana att raca på och i denna func skapas de
+def draw_track(players):                                                                              #Varje spelare får sin bana att raca på och i denna func skapas de,
     print(C.reset)
     print(C.bold + C.green + "\n" * 50 + "                           ---Welcome to the Race!---")
     print("        START          :> ============================== <: FINISHED\n" + C.reset)
-    track_length = 30
-    player_tracks = {}
+    track_length = 30                                                                                    #varibel för banans längd
+    player_tracks = {}                                                                                   # i denna dictonary ska all banor sparas
     for player in players:
-        track = np.full(track_length, '-', dtype=object)
-        track[0] = f"{player.color}X"
-        player_tracks[player.colored_name] = track
+        track = np.full(track_length, '-', dtype=object)                                         # hör skapas tom numpy array - representerar en tom bana
+        track[0] = f"{player.color}X"                                                                    # start position som ett X på index 0 för varje spelare
+        player_tracks[player.colored_name] = track                                                       # Här appendas dictonaryn
     return player_tracks
 
 
-def print_tracks(player_tracks):
+def print_tracks(player_tracks):                                                    # i denna lilla func skrivs varje spelares bana ut
     for player, track in player_tracks.items():
         print(f"        {player:<20}:> {''.join(track)}")
 
 
-def player_turn(player, player_tracks):
+def player_turn(player, player_tracks):                                         #Här är allt som händer under en spelares "drag"
     print(f"\nIt's {player.colored_name}'s\033[0m turn! Press ENTER to roll")
     input()
-    dice_roll = Dice.roll_dices()
-    player.dice_values.append(dice_roll)  # store the dice value
-    player.score += sum(dice_roll)  # update the score
-    player.turns_to_win += 1  # increment the turn count
-    player.accumulated_scores.append(player.score)
-    player.dice_counts[dice_roll[0]] += 1  #uppdatera
+    dice_roll = Dice.roll_dices()                                               #tärnings kast hämtas från filen dice.py
+    player.dice_values.append(dice_roll)                                        # tärningskastet sparas
+    player.score += sum(dice_roll)                                              # poängen räknas
+    player.turns_to_win += 1                                                    # dragen räknas
+    player.accumulated_scores.append(player.score)                              # samlar sammanlagd score för att lättare göra statestik
+    player.dice_counts[dice_roll[0]] += 1                                       # samlar all spelarnas sammalagda tärnings utfall
     print(f"{player.colored_name}\033[0m rolled a {dice_roll}!")
-    update_position(player, dice_roll, player_tracks)
+    update_position(player, dice_roll, player_tracks)                           # Nästa funktion körs
 
 
-def update_position(player, dice_roll, player_tracks):
-    colored_X = f"{player.color}X"
-    current_position = np.where(player_tracks[player.colored_name] == colored_X)[0][0]
-    player_tracks[player.colored_name][current_position] = '-'
-    new_position = current_position + dice_roll
-    if new_position >= len(player_tracks[player.colored_name]):
+def update_position(player, dice_roll, player_tracks):                                      #i denne func flyttas pjäserna X
+    colored_X = f"{player.color}X"                                                          # X med spelarens förg
+    current_position = np.where(player_tracks[player.colored_name] == colored_X)[0][0]      #np.where används för att hitta spelarens pos i arrayen
+    player_tracks[player.colored_name][current_position] = '-'                              # den hittade pos. ersätts med -
+    new_position = current_position + dice_roll                                             # ny index beräknas
+    if new_position >= len(player_tracks[player.colored_name]):                             # kontroll görs om spelaren har gåt förbi max index
         input(f"{player.colored_name} wins!"
               f"\nPress ENTER to continue")
-        player_tracks[player.colored_name][-1] = colored_X
+        player_tracks[player.colored_name][-1] = colored_X                                  # om vinst sätts X på sista pos
     else:
-        player_tracks[player.colored_name][new_position] = colored_X
+        player_tracks[player.colored_name][new_position] = colored_X                        # annars på den beräknade positionen
 
-def play_game():
+def play_game():                                                                            # Här sker själva spel loopen som startas i menyn Functionerna kalles efter hand
     players = add_players()
     player_tracks = draw_track(players)
     print_tracks(player_tracks)
@@ -85,10 +85,9 @@ def play_game():
         for player in players:
             player_turn(player, player_tracks)
             print_tracks(player_tracks)
-            if 'X' in player_tracks[player.colored_name][-1]:
-                winner = player
-                Win_scene.win(players, winner)
+            if 'X' in player_tracks[player.colored_name][-1]:                               #Kontroll när spelet är slut
+                winner = player                                                             # vinnare definieras
+                Win_scene.win(players, winner)                                              # Här går vi vidare när spelet är slut
                 game_over = True
                 break
 
-# play_game()

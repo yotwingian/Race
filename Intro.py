@@ -5,7 +5,7 @@ import Menu
 import Color as C
 
 
-def print_slow(text, delay=0.08):  # Denna func. skriver ut texten(intro) långsamt med fördröjning(delay som man kan setta, func är från gpt:n så jag låter kommentarerna vara kvar på engelska, tänkte jag gör liknande på andra func. från gpt:n )
+def print_slow(text, delay=0.08):  # Denna func. skriver ut texten(intro) långsamt med fördröjning(delay som man kan setta, func är från gpt:n så jag låter kommentarerna vara kvar på engelska
 
     for char in text:
         sys.stdout.write(char)  # Write one character at a time
@@ -16,14 +16,14 @@ def print_slow(text, delay=0.08):  # Denna func. skriver ut texten(intro) långs
 intro = C.bold + "\n    Earth 2078.......\n \n    Pollution has made Earth almost uninhabitable, and people are literally choking to death.\n    But there is a way out: the new Tesla colony at Alpha Centauri.\n    The decadent Earth society is arranging monthly competitions,\n    and the prize is a ticket on the last ship from Earth heading for Alpha Proxima.\n    You have been chosen for the escape race.\n    Are you ready?.........\n                                          Press space"
 
 
-def game_intro():  # Denna function innehåller introbilden, här startas söle texten, och keylistenern, färgen (c.blabla) kommer från filen Color.py som är mitt lilla färgbibliotek
+def game_intro():                       # Denna function innehåller introbilden, här startas söle texten, och keylistenern, färgen (c.blabla) kommer från filen Color.py som är mitt lilla färgbibliotek
     print_slow(intro,
-               0.08)  # slö functionen startar, intro variabeln läses in och hastheten  är 0.08 sek per bokstav tror jag
+               0.08)              # slö functionen startar, intro variabeln läses in och hastheten  är 0.08 sek per bokstav tror jag
 
     listener = keyboard.Listener(suppress=True, on_press=None)  # definiera listener med egenskaper
 
     def on_press(
-            key):  # listener func nesslas in på detta sättet i game_into och programmet går ej vidare förän space i detta fallet har tryckts
+            key):                      # listener func nesslas in på detta sättet i game_into och programmet går ej vidare förän space i detta fallet har tryckts
         if key == keyboard.Key.space:
             print("\n" * 100 + C.blue + "                                                                            "
                                         "\n                      , v y va88   8 v  8,,                              "
@@ -53,5 +53,5 @@ def game_intro():  # Denna function innehåller introbilden, här startas söle 
 
     listener.on_press = on_press
     listener.start()
-    listener.join()  # De fyra sista listener raderna får den att stanna och stängas av helt
-    Menu.main_menu()  # efter space kommer Hyvudmenun i filen Menu
+    listener.join()                   # De fyra sista listener raderna får den att stanna och stängas av helt
+    Menu.main_menu()                   # efter space kommer Huvudmenun i filen Menu

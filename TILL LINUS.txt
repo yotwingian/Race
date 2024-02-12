@@ -1,0 +1,9 @@
+Hej Linus tack för en riktigt bra kurs! , hade lite svårt att komma igång och framför allt svårt att välja något ur de förslagna
+uppgifterna så jag gjorde nåt eget det blev ju inta alls som tänkt och det tog mycket länge tid än beräknat. Hoppas
+mitt spel uppfyller kriterierna har lite numpy och lite pandas o lite matplotlib, tillsamans blir de som en kanske
+I mina grandiosa tankar kan är racet lite längre det händer olika events på vissa index osv men det får komma i
+nästa version och lite bättre grafik. Trodde jag skulle säga nåt mer vettigt men kommer inte på nåt nu, ska göra sista gitningen
+ är lite sen kl är nu 02:08 men jag har skrivit kommentarar i evigheter känns det som. ha det gott Mvh Pawel
+
+
+
