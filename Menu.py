@@ -2,7 +2,8 @@ import Board
 import Color as C
 
 
-def main_menu():                                                                                                
+def main_menu():    
+    run = True                                                                                            
     while run:                                                                                                  
         answer = input(C.green + C.bold + f"\n                         Escape from Earth \n" + C.reset + ""     
                        + C.green + "                          1. Play The Game"
