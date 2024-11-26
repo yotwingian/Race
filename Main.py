@@ -1,9 +1,9 @@
 
 
-import Intro  # hämtar sidan intro.py
+import Intro  
 
 
-def main():     # Denna funkton startar spelet genom att köra game_intro
+def main():     
     Intro.game_intro()
 
 
